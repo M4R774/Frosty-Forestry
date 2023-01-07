@@ -6,7 +6,9 @@ signal rock_hit
 export var speed = 400
 var screen_size
 var health = 3
-var saw_active = false
+var can_saw = true
+export var saw_cooldown = 1
+onready var sprites = [preload("res://Sprites/traktor.png"), preload("res://Sprites/traktor_no_saw.png")]
 
 
 func _ready():
@@ -26,11 +28,11 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 	
-	if Input.is_action_just_pressed("activate_saw") and !saw_active:
-		saw_active = true
-		$CollisionShape2D/Saw.monitoring = true
-		$CollisionShape2D/Saw/ColorRect.visible = true
-		$SawCooldown.start()
+	if Input.is_action_just_pressed("activate_saw") and can_saw:
+		can_saw = false
+		$Saw.monitoring = true
+		$Saw/ColorRect.visible = true
+		$SawActive.start()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -76,10 +78,16 @@ func start(pos):
 	$CollisionShape2D.disabled = false;
 
 
+func _on_SawActive_timeout():
+	$SawCooldown.start(saw_cooldown)
+	$Saw.monitoring = false
+	$Saw/ColorRect.visible = false
+	$CollisionShape2D/Sprite.set_texture(sprites[1])
+
+
 func _on_SawCooldown_timeout():
-	saw_active = false
-	$CollisionShape2D/Saw.monitoring = false
-	$CollisionShape2D/Saw/ColorRect.visible = false
+	$CollisionShape2D/Sprite.set_texture(sprites[0])
+	can_saw = true
 
 
 func _on_Saw_body_entered(body):
@@ -88,3 +96,4 @@ func _on_Saw_body_entered(body):
 		#print("tree hit")
 		body.cut_down()
 		emit_signal("tree_cut")
+

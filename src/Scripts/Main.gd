@@ -17,7 +17,7 @@ func _process(delta):
 
 
 func spawn_tree():
-	var spawn_position = Vector2(int(spawn_x), rand_range(300, 550))
+	var spawn_position = Vector2(int(spawn_x), rand_range(300, 500))
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
 	tree_layer.add_child(tree)

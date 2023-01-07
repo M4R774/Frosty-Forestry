@@ -7,10 +7,11 @@
 extents = Vector2( 142.5, 111.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 31, 67 )
+extents = Vector2( 79, 36 )
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
+saw_cooldown = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -68.25, 0 )
@@ -22,23 +23,30 @@ position = Vector2( 0, 0.5 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
-[node name="Saw" type="Area2D" parent="CollisionShape2D"]
+[node name="Saw" type="Area2D" parent="."]
+position = Vector2( -68.25, 0 )
+scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
-[node name="SawCollider" type="CollisionShape2D" parent="CollisionShape2D/Saw"]
-position = Vector2( 111.5, 51 )
+[node name="SawCollider" type="CollisionShape2D" parent="Saw"]
+position = Vector2( 137.5, 60 )
 shape = SubResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="CollisionShape2D/Saw"]
+[node name="ColorRect" type="ColorRect" parent="Saw"]
 visible = false
-margin_left = 78.5
-margin_top = 28.0
-margin_right = 118.5
-margin_bottom = 68.0
+margin_left = 112.5
+margin_top = 38.0
+margin_right = 152.5
+margin_bottom = 78.0
+color = Color( 1, 0, 0.72549, 1 )
+
+[node name="SawActive" type="Timer" parent="."]
+one_shot = true
 
 [node name="SawCooldown" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
-[connection signal="body_entered" from="CollisionShape2D/Saw" to="." method="_on_Saw_body_entered"]
+[connection signal="body_entered" from="Saw" to="." method="_on_Saw_body_entered"]
+[connection signal="timeout" from="SawActive" to="." method="_on_SawActive_timeout"]
 [connection signal="timeout" from="SawCooldown" to="." method="_on_SawCooldown_timeout"]

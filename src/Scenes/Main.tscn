@@ -37,17 +37,17 @@ region_rect = Rect2( 0, 0, 205, 164 )
 
 [node name="Trees" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 301 )
-
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 172, 438 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 301 )
 
 [node name="TreeSpawner" type="Timer" parent="."]
 autostart = true
 
 [node name="RockSpawner" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.75
 autostart = true
 
 [node name="HitRockDelay" type="Timer" parent="."]
