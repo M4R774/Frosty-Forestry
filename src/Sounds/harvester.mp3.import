@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/harvester.mp3-8dc1c2152f4cd037dd3de6fa144dfa4f.mp3str"
+
+[deps]
+
+source_file="res://Sounds/harvester.mp3"
+dest_files=[ "res://.import/harvester.mp3-8dc1c2152f4cd037dd3de6fa144dfa4f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
