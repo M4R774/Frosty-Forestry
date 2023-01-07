@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sounds/diesel-truck-idling.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/diesel-truck-starting-short.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/GoalLabel.gd" type="Script" id=11]
+[ext_resource path="res://Sprites/saw_blade.png" type="Texture" id=12]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -70,19 +71,56 @@ margin_right = -510.0
 margin_bottom = 40.0
 theme = ExtResource( 6 )
 
+[node name="ColorRect" type="ColorRect" parent="YSort/Player/UserInterface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 36.0
+margin_top = 497.0
+margin_right = 1024.0
+margin_bottom = 562.0
+color = Color( 0.113725, 0.168627, 0.32549, 1 )
+
+[node name="Lives" type="Control" parent="YSort/Player/UserInterface"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 525.0
+margin_top = 482.0
+margin_right = 565.0
+margin_bottom = 522.0
+
+[node name="Life1" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
+position = Vector2( -50, 25 )
+rotation = -0.785398
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="Life2" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
+position = Vector2( 0, 25 )
+rotation = -0.785398
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="Life3" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
+position = Vector2( 50, 25 )
+rotation = -0.785398
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
 [node name="ScoreLabel" type="Label" parent="YSort/Player/UserInterface"]
-margin_left = 44.0
-margin_top = 191.0
-margin_right = 280.0
-margin_bottom = 223.0
+margin_left = 76.0
+margin_top = 535.0
+margin_right = 312.0
+margin_bottom = 567.0
 text = "Forest raked: 0"
 script = ExtResource( 7 )
 
 [node name="GoalLabel" type="Label" parent="YSort/Player/UserInterface"]
-margin_left = 838.0
-margin_top = 188.0
-margin_right = 1052.0
-margin_bottom = 220.0
+margin_left = 814.0
+margin_top = 532.0
+margin_right = 1028.0
+margin_bottom = 564.0
 text = "Boss wants:  !!"
 script = ExtResource( 11 )
 
