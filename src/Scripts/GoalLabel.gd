@@ -8,6 +8,10 @@ func _init():
 	text = "Boss wants: %s!!" % goal
 
 
+func end_game():
+	get_tree().change_scene("res://Scenes/Main Menu.tscn")
+
+
 func _ready():
 	_timer = Timer.new()
 	add_child(_timer)
@@ -19,5 +23,7 @@ func _ready():
 
 
 func _on_Timer_timeout():
+	if $"/root/Main/YSort/Player/UserInterface/ScoreLabel".score >= goal:
+		end_game()
 	goal += 1
 	text = "Boss wants: %s!!" % goal
