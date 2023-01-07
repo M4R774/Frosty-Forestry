@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/snow.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sprites/grass.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/bluesky.png" type="Texture" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
