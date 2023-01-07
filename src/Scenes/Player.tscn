@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/traktor.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/chainsaw-short.mp3" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 123, 65.75 )
+extents = Vector2( 142.5, 111.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 79, 36 )
@@ -12,6 +13,9 @@ extents = Vector2( 79, 36 )
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
 saw_cooldown = 2
+
+[node name="ChainsawSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -100.5, 22.875 )
