@@ -91,21 +91,21 @@ margin_right = 565.0
 margin_bottom = 522.0
 
 [node name="Life0" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
-position = Vector2( -50, 25 )
+position = Vector2( -75, 25 )
 rotation = -0.785398
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 12 )
 
 [node name="Life1" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
 position = Vector2( 0, 25 )
 rotation = -0.785398
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 12 )
 
 [node name="Life2" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
-position = Vector2( 50, 25 )
+position = Vector2( 75, 25 )
 rotation = -0.785398
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 12 )
 
 [node name="ScoreLabel" type="Label" parent="YSort/Player/UserInterface"]
