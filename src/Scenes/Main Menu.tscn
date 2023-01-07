@@ -1,108 +1,128 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Main.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sounds/menu.mp3" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/MainMenu2.png" type="Texture" id=5]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 2 )
 mainGameScene = ExtResource( 3 )
 
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = -239.0
+margin_right = 1024.0
+margin_bottom = 785.0
+texture = ExtResource( 5 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.721569 )
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 601.0
-color = Color( 0.431373, 0.431373, 0.431373, 1 )
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
-custom_constants/margin_right = 10
+custom_constants/margin_right = 50
 custom_constants/margin_top = 50
-custom_constants/margin_left = 10
+custom_constants/margin_left = 50
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 10.0
+margin_left = 50.0
 margin_top = 50.0
-margin_right = 1014.0
+margin_right = 974.0
 margin_bottom = 590.0
 custom_constants/separation = 50
 
 [node name="Game Name Label" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 1004.0
+margin_right = 924.0
 margin_bottom = 32.0
-size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource( 1 )
 text = "[Insert game name here]"
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Game Name Label2" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 82.0
-margin_right = 1004.0
-margin_bottom = 540.0
+margin_right = 924.0
+margin_bottom = 114.0
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 924.0
+margin_bottom = 423.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 
-[node name="Menu Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 492.0
-margin_bottom = 458.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 452.0
+margin_bottom = 259.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Menu Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+margin_right = 452.0
+margin_bottom = 259.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_constants/separation = 20
+custom_constants/separation = 50
 
-[node name="New Game Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Menu Buttons"]
-margin_right = 492.0
-margin_bottom = 219.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="New Game Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons"]
+margin_right = 452.0
+margin_bottom = 38.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
 theme = ExtResource( 1 )
 text = "Start game"
 
-[node name="Options Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Menu Buttons"]
-margin_top = 239.0
-margin_right = 492.0
-margin_bottom = 458.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Options Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons"]
+margin_top = 88.0
+margin_right = 452.0
+margin_bottom = 126.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
 theme = ExtResource( 1 )
 text = "Options"
 
 [node name="How to play" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 512.0
-margin_right = 1004.0
-margin_bottom = 458.0
+margin_left = 472.0
+margin_right = 924.0
+margin_bottom = 259.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 custom_constants/separation = 20
 
 [node name="Instructions" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/How to play"]
-margin_right = 492.0
-margin_bottom = 336.0
+margin_right = 452.0
+margin_bottom = 259.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "How to play:
-
 Controls: Arrows/WASD
+Spacebar: Chainsaw
 
-Collect as many trees as you can. Watch out for rocks!
+Collect as many trees as you can. Watch out for rocks!"
 
-"
-
-[node name="Credits" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/How to play"]
-margin_top = 356.0
-margin_right = 492.0
-margin_bottom = 458.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 473.0
+margin_right = 924.0
+margin_bottom = 540.0
+theme = ExtResource( 1 )
 text = "A Ludum Dare 52 game by Tatsoni, Rafla, Saamac1 and Martta"
 autowrap = true
 
-[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/Menu Buttons/New Game Button" to="." method="_on_New_Game_Button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons/New Game Button" to="." method="_on_New_Game_Button_button_up"]
