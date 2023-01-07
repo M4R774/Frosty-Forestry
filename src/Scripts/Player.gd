@@ -33,6 +33,7 @@ func _process(delta):
 		$Saw.monitoring = true
 		$Saw/ColorRect.visible = true
 		$SawActive.start()
+		get_node("ChainsawSound").play()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed

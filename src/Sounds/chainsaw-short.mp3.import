@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chainsaw-short.mp3-7847356e8e25fd105c67c7a446e5aabf.mp3str"
+
+[deps]
+
+source_file="res://Sounds/chainsaw-short.mp3"
+dest_files=[ "res://.import/chainsaw-short.mp3-7847356e8e25fd105c67c7a446e5aabf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
