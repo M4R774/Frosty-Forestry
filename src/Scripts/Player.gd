@@ -33,7 +33,7 @@ func _process(delta):
 		#$AnimatedSprite.stop()
 		
 	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
+	position.x = clamp(position.x, 140, screen_size.x)
 	var road = get_node("/root/Main/ParallaxBackground/Road/Sprite")
 	var road_height_in_pixels = road.texture.get_height() * road.scale.y
 	var road_upper_limit = road.get_global_position().y - road_height_in_pixels
