@@ -36,3 +36,16 @@ position = Vector2( 512, 301 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 172, 438 )
+
+[node name="TreeSpawner" type="Timer" parent="."]
+autostart = true
+
+[node name="RockSpawner" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="area_entered" from="Player" to="Player" method="_on_Player_area_entered"]
+[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+[connection signal="tree_cut" from="Player" to="." method="_on_Player_tree_cut"]
+[connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
+[connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]

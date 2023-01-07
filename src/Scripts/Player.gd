@@ -1,5 +1,5 @@
 extends Area2D
-signal hit
+signal tree_cut
 
 export var speed = 400
 var screen_size
@@ -12,6 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#print(position)
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -44,11 +45,17 @@ func _process(delta):
 
 
 func _on_Player_body_entered(body):
-	hide()
-	emit_signal("hit")
-	$CollisionShape2D.set_deferred("disabled", true)
+	if body.is_in_group("tree"):
+		#print("tree hit")
+		body.cut_down()
+	if body.is_in_group("tree"):
+		print("hit rock")
+	#hide()
+	emit_signal("tree_cut")
+	#$CollisionShape2D.set_deferred("disabled", true)
 
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false;
+
