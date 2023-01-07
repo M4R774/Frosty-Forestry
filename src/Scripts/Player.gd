@@ -5,7 +5,6 @@ signal rock_hit
 
 export var speed = 400
 var screen_size
-var health = 3
 var can_saw = true
 export var saw_cooldown = 1
 onready var sprites = [preload("res://Sprites/traktor.png"), preload("res://Sprites/traktor_no_saw.png")]
@@ -64,11 +63,7 @@ func _on_Player_body_entered(body):
 	if body.is_in_group("rock"):
 		body.queue_free()
 		emit_signal("rock_hit")
-		health -= 1
 		print("hit rock")
-	if health == 0:
-		if get_tree().reload_current_scene() != OK:
-			print("cannot reload current scene")
 	#hide()
 	#$CollisionShape2D.set_deferred("disabled", true)
 

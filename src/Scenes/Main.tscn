@@ -75,9 +75,9 @@ theme = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 36.0
-margin_top = 497.0
+margin_top = 501.0
 margin_right = 1024.0
-margin_bottom = 562.0
+margin_bottom = 561.0
 color = Color( 0.113725, 0.168627, 0.32549, 1 )
 
 [node name="Lives" type="Control" parent="YSort/Player/UserInterface"]
@@ -90,19 +90,19 @@ margin_top = 482.0
 margin_right = 565.0
 margin_bottom = 522.0
 
-[node name="Life1" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
+[node name="Life0" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
 position = Vector2( -50, 25 )
 rotation = -0.785398
 scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 
-[node name="Life2" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
+[node name="Life1" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
 position = Vector2( 0, 25 )
 rotation = -0.785398
 scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 
-[node name="Life3" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
+[node name="Life2" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
 position = Vector2( 50, 25 )
 rotation = -0.785398
 scale = Vector2( 2, 2 )

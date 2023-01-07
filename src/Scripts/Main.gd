@@ -15,16 +15,16 @@ func _ready():
 
 func spawn_tree():
 	var playerPosition : Vector2 = get_node(playerNodePath).get_position()
-	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(300, 500))
+	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(200, 400))
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
 	tree_layer.add_child(tree)
-	print("tree spawned to pos ", spawn_position)
+	#print("tree spawned to pos ", spawn_position)
 
 
 func spawn_rock():
 	var playerPosition : Vector2 = get_node(playerNodePath).get_position()
-	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(300, 500))
+	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(200, 400))
 	var rock = rock_scene.instance()
 	rock.position = spawn_position
 	tree_layer.add_child(rock)
