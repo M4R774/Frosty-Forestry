@@ -61,23 +61,24 @@ autostart = true
 [node name="HitRockDelay" type="Timer" parent="."]
 one_shot = true
 
-[node name="UserInterface" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-theme = ExtResource( 6 )
-
-[node name="ScoreLabel" type="Label" parent="UserInterface"]
-margin_left = 7.0
-margin_top = 192.0
-margin_right = 135.0
-margin_bottom = 224.0
-text = "Forest raked: 0"
-script = ExtResource( 7 )
-
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 4 )]
 position = Vector2( 550, 0 )
+
+[node name="UserInterface" type="Control" parent="YSort/Player"]
+margin_left = -550.0
+margin_right = -510.0
+margin_bottom = 40.0
+theme = ExtResource( 6 )
+
+[node name="ScoreLabel" type="Label" parent="YSort/Player/UserInterface"]
+margin_left = 44.0
+margin_top = 191.0
+margin_right = 280.0
+margin_bottom = 223.0
+text = "Forest raked: 0"
+script = ExtResource( 7 )
 
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]
