@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-onready var cut_sprite = preload("res://2d assets/tree_cut.png")
+onready var cut_sprite = preload("res://Sprites/tree_cut.png")
 
 
 # Called when the node enters the scene tree for the first time.

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/harverster_TEMP.png-57ad36e2d4bbb2686e3ed90cef0770bb.stex"
+path="res://.import/snow.png-e8a1e72a46c67515f04d6b896119190f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d assets/harverster_TEMP.png"
-dest_files=[ "res://.import/harverster_TEMP.png-57ad36e2d4bbb2686e3ed90cef0770bb.stex" ]
+source_file="res://Sprites/snow.png"
+dest_files=[ "res://.import/snow.png-e8a1e72a46c67515f04d6b896119190f.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=1.0
+svg/scale=2.0

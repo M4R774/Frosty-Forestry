@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grass.png-dafa46d376c74f03a1c906bfe0a086d9.stex"
+path="res://.import/tree_cut.png-dc5ed7b19772df70ea4621ecc7cd1ef6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://2d assets/grass.png"
-dest_files=[ "res://.import/grass.png-dafa46d376c74f03a1c906bfe0a086d9.stex" ]
+source_file="res://Sprites/tree_cut.png"
+dest_files=[ "res://.import/tree_cut.png-dc5ed7b19772df70ea4621ecc7cd1ef6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
