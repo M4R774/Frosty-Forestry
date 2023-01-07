@@ -66,8 +66,6 @@ margin_bottom = 224.0
 text = "Forest raked: 0"
 script = ExtResource( 7 )
 
-[connection signal="area_entered" from="Player" to="Player" method="_on_Player_area_entered"]
-[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
 [connection signal="rock_hit" from="Player" to="." method="_on_Player_rock_hit"]
 [connection signal="tree_cut" from="Player" to="." method="_on_Player_tree_cut"]
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]

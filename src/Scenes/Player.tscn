@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/traktor.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 142.5, 111.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31, 67 )
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
@@ -18,3 +21,24 @@ shape = SubResource( 1 )
 position = Vector2( 0, 0.5 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
+
+[node name="Saw" type="Area2D" parent="CollisionShape2D"]
+monitoring = false
+
+[node name="SawCollider" type="CollisionShape2D" parent="CollisionShape2D/Saw"]
+position = Vector2( 111.5, 51 )
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="CollisionShape2D/Saw"]
+visible = false
+margin_left = 78.5
+margin_top = 28.0
+margin_right = 118.5
+margin_bottom = 68.0
+
+[node name="SawCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[connection signal="body_entered" from="CollisionShape2D/Saw" to="." method="_on_Saw_body_entered"]
+[connection signal="timeout" from="SawCooldown" to="." method="_on_SawCooldown_timeout"]

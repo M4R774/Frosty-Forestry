@@ -6,6 +6,7 @@ signal rock_hit
 export var speed = 400
 var screen_size
 var health = 3
+var saw_active = false
 
 
 func _ready():
@@ -24,6 +25,12 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	
+	if Input.is_action_just_pressed("activate_saw") and !saw_active:
+		saw_active = true
+		$CollisionShape2D/Saw.monitoring = true
+		$CollisionShape2D/Saw/ColorRect.visible = true
+		$SawCooldown.start()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -51,17 +58,14 @@ func _process(delta):
 
 
 func _on_Player_body_entered(body):
-	if body.is_in_group("tree"):
-		#print("tree hit")
-		body.cut_down()
-		emit_signal("tree_cut")
 	if body.is_in_group("rock"):
 		body.queue_free()
 		emit_signal("rock_hit")
 		health -= 1
 		print("hit rock")
 	if health == 0:
-		get_tree().reload_current_scene()
+		if get_tree().reload_current_scene() != OK:
+			print("cannot reload current scene")
 	#hide()
 	#$CollisionShape2D.set_deferred("disabled", true)
 
@@ -71,3 +75,16 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false;
 
+
+func _on_SawCooldown_timeout():
+	saw_active = false
+	$CollisionShape2D/Saw.monitoring = false
+	$CollisionShape2D/Saw/ColorRect.visible = false
+
+
+func _on_Saw_body_entered(body):
+	if body.is_in_group("tree"):
+		pass
+		#print("tree hit")
+		body.cut_down()
+		emit_signal("tree_cut")

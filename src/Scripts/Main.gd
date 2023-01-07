@@ -14,8 +14,6 @@ func _ready():
 func _process(delta):
 	spawn_x += 200 * delta * $ParallaxBackground.speed
 	# for debugging
-	if Input.is_action_just_pressed("jump"):
-		spawn_tree()
 
 
 func spawn_tree():
@@ -23,7 +21,7 @@ func spawn_tree():
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
 	tree_layer.add_child(tree)
-	print("tree spawned to pos ", spawn_position)
+	#print("tree spawned to pos ", spawn_position)
 
 
 func spawn_rock():
