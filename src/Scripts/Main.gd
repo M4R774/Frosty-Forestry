@@ -5,6 +5,7 @@ onready var tree_scene = preload("res://Scenes/Tree.tscn")
 onready var rock_scene = preload("res://Scenes/Rock.tscn")
 onready var tree_layer = $ParallaxBackground/Trees
 var spawn_x = 1200
+var speed
 
 
 func _ready():
@@ -12,7 +13,7 @@ func _ready():
 
 
 func _process(delta):
-	spawn_x += 200 * delta
+	spawn_x += 200 * delta * $ParallaxBackground.speed
 	# for debugging
 	if Input.is_action_just_pressed("jump"):
 		spawn_tree()
