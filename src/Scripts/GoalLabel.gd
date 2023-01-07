@@ -5,7 +5,7 @@ var _timer = null
 
 
 func _init():
-	text = "Boss wants: %s!!" % goal
+	text = "Boss wants: %s ?!" % goal
 
 
 func end_game():
@@ -26,4 +26,4 @@ func _on_Timer_timeout():
 	if $"/root/Main/YSort/Player/UserInterface/ScoreLabel".score >= goal:
 		end_game()
 	goal += 1
-	text = "Boss wants: %s !!" % goal
+	text = "Boss wants: %s ?!" % goal
