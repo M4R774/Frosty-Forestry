@@ -10,6 +10,7 @@
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
+speed = 400
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 2 )

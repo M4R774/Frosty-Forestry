@@ -4,7 +4,9 @@ onready var tree_scene = preload("res://Scenes/Tree.tscn")
 onready var rock_scene = preload("res://Scenes/Rock.tscn")
 onready var tree_layer = $ParallaxBackground/Trees
 var spawn_x = 1200
-var speed
+var tree_spawn_rate = 1
+var rock_spawn_rate = 4.75
+export var speed = 200
 
 
 func _ready():
@@ -12,7 +14,7 @@ func _ready():
 
 
 func _process(delta):
-	spawn_x += 200 * delta * $ParallaxBackground.speed
+	spawn_x += speed * delta * $ParallaxBackground.accelleration
 	# for debugging
 
 
@@ -33,10 +35,12 @@ func spawn_rock():
 
 func _on_TreeSpawner_timeout():
 	spawn_tree()
+	$TreeSpawner.start(tree_spawn_rate / $ParallaxBackground.accelleration)
 
 
 func _on_RockSpawner_timeout():
 	spawn_rock()
+	$RockSpawner.start(rock_spawn_rate / $ParallaxBackground.accelleration)
 
 
 func _on_Player_tree_cut():
