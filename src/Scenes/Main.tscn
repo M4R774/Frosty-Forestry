@@ -117,12 +117,13 @@ margin_bottom = 567.0
 text = "Forest raked: 0"
 script = ExtResource( 7 )
 
-[node name="GoalLabel" type="Label" parent="YSort/Player/UserInterface"]
+[node name="GoalLabel" type="RichTextLabel" parent="YSort/Player/UserInterface"]
 margin_left = 747.0
 margin_top = 532.0
 margin_right = 1019.0
 margin_bottom = 564.0
 text = "Boss wants:  00 ?!"
+scroll_active = false
 script = ExtResource( 11 )
 
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
