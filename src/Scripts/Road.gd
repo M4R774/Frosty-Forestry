@@ -9,8 +9,8 @@ var accelleration = 1
 func _ready():
 	speed = get_node("..").speed
 
-func _process(delta):
-	if can_scroll:
-		scroll_offset.x -= speed * delta * accelleration
-		if increase_accelleration:
-			accelleration += 0.1 * delta
+#func _process(delta):
+#	if can_scroll:
+#		scroll_offset.x -= speed * delta * accelleration
+#		if increase_accelleration:
+#			accelleration += 0.1 * delta

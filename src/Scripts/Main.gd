@@ -7,22 +7,24 @@ var spawn_x = 1200
 var tree_spawn_rate = 1
 var rock_spawn_rate = 4.75
 export var speed = 200
-
+export (NodePath) var playerNodePath = ""
 
 func _ready():
 	randomize()
 
 
 func spawn_tree():
-	var spawn_position = Vector2(int(spawn_x), rand_range(300, 500))
+	var playerPosition : Vector2 = get_node(playerNodePath).get_position()
+	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(300, 500))
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
 	tree_layer.add_child(tree)
-	#print("tree spawned to pos ", spawn_position)
+	print("tree spawned to pos ", spawn_position)
 
 
 func spawn_rock():
-	var spawn_position = Vector2(int(spawn_x), rand_range(300, 550))
+	var playerPosition : Vector2 = get_node(playerNodePath).get_position()
+	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(300, 500))
 	var rock = rock_scene.instance()
 	rock.position = spawn_position
 	tree_layer.add_child(rock)

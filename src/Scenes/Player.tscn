@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/traktor.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/chainsaw-short.mp3" type="AudioStream" id=3]
+[ext_resource path="res://Sprites/smoke.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/PlayerParent.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 142.5, 111.5 )
@@ -10,33 +12,56 @@ extents = Vector2( 142.5, 111.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 79, 36 )
 
-[node name="Player" type="Area2D"]
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.363128, 1 )
+colors = PoolColorArray( 0.203125, 0.203125, 0.203125, 1, 0.199219, 0.199219, 0.199219, 0 )
+
+[sub_resource type="Curve" id=4]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.965347, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="PlayerParent" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_top = 0
+limit_bottom = 0
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2( 0, 299 )
 script = ExtResource( 1 )
 saw_cooldown = 2
 
-[node name="ChainsawSound" type="AudioStreamPlayer" parent="."]
+[node name="ChainsawSound" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="SawCooldown" type="Timer" parent="Player"]
+one_shot = true
+
+[node name="SawActive" type="Timer" parent="Player"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2( -100.5, 22.875 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+[node name="Sprite" type="Sprite" parent="Player/CollisionShape2D"]
 position = Vector2( 64.5, -45.25 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
-[node name="Saw" type="Area2D" parent="."]
+[node name="Saw" type="Area2D" parent="Player"]
 position = Vector2( -68.25, 0 )
 scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
-[node name="SawCollider" type="CollisionShape2D" parent="Saw"]
+[node name="SawCollider" type="CollisionShape2D" parent="Player/Saw"]
 position = Vector2( 137.5, 60 )
 shape = SubResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="Saw"]
+[node name="ColorRect" type="ColorRect" parent="Player/Saw"]
 visible = false
 margin_left = 112.5
 margin_top = 38.0
@@ -44,13 +69,29 @@ margin_right = 152.5
 margin_bottom = 78.0
 color = Color( 1, 0, 0.72549, 1 )
 
-[node name="SawActive" type="Timer" parent="."]
-one_shot = true
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
+position = Vector2( -80, -60 )
+z_index = -1
+z_as_relative = false
+amount = 64
+lifetime = 2.0
+randomness = 1.0
+lifetime_randomness = 0.2
+local_coords = false
+texture = ExtResource( 4 )
+emission_shape = 2
+emission_rect_extents = Vector2( 4, 1 )
+direction = Vector2( 0, -1 )
+spread = 15.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.1
+scale_amount = 6.0
+scale_amount_random = 0.5
+color_ramp = SubResource( 3 )
+hue_variation_curve = SubResource( 4 )
 
-[node name="SawCooldown" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
-[connection signal="body_entered" from="Saw" to="." method="_on_Saw_body_entered"]
-[connection signal="timeout" from="SawActive" to="." method="_on_SawActive_timeout"]
-[connection signal="timeout" from="SawCooldown" to="." method="_on_SawCooldown_timeout"]
+[connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+[connection signal="timeout" from="Player/SawCooldown" to="Player" method="_on_SawCooldown_timeout"]
+[connection signal="timeout" from="Player/SawActive" to="Player" method="_on_SawActive_timeout"]
+[connection signal="body_entered" from="Player/Saw" to="Player" method="_on_Saw_body_entered"]
