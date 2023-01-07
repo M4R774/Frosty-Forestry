@@ -45,7 +45,7 @@ margin_right = 924.0
 margin_bottom = 32.0
 size_flags_vertical = 1
 theme = ExtResource( 1 )
-text = "[Insert game name here]"
+text = "WOOD WORK"
 align = 1
 valign = 1
 

@@ -1,6 +1,6 @@
 extends Label
 
-var goal = 5
+var goal = 50
 var _timer = null
 
 
@@ -26,5 +26,5 @@ func _ready():
 func _on_Timer_timeout():
 	if $"/root/Main/YSort/Player/UserInterface/ScoreLabel".score >= goal:
 		end_game()
-	goal += 1
+	goal += 5 # was 1
 	text = "Boss wants: %s ?!" % goal
