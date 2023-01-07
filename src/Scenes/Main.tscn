@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sounds/harvester.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Sounds/diesel-truck-idling.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/diesel-truck-starting-short.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Scripts/GoalLabel.gd" type="Script" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -76,6 +77,14 @@ margin_right = 280.0
 margin_bottom = 223.0
 text = "Forest raked: 0"
 script = ExtResource( 7 )
+
+[node name="GoalLabel" type="Label" parent="YSort/Player/UserInterface"]
+margin_left = 838.0
+margin_top = 188.0
+margin_right = 1052.0
+margin_bottom = 220.0
+text = "Boss wants:  !!"
+script = ExtResource( 11 )
 
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]

@@ -11,7 +11,10 @@ config_version=4
 [application]
 
 config/name="LD52"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Main Menu.tscn"
+boot_splash/image="res://Sprites/Making_it_HIGHRES4_ocapacity.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 1, 1, 1, 1 )
 config/icon="res://icon.png"
 
 [display]
