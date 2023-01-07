@@ -7,7 +7,7 @@
 [ext_resource path="res://Scripts/PlayerParent.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 123, 65.75 )
+extents = Vector2( 142.5, 111.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 79, 36 )
