@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
@@ -7,10 +7,20 @@
 [ext_resource path="res://Sprites/bluesky.png" type="Texture" id=5]
 [ext_resource path="res://default_theme.tres" type="Theme" id=6]
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=7]
+[ext_resource path="res://Sounds/harvester.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/diesel-truck-idling.mp3" type="AudioStream" id=9]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 speed = 400
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 2 )
