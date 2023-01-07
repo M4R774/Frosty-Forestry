@@ -9,7 +9,8 @@ func _init():
 
 
 func end_game():
-	get_tree().change_scene("res://Scenes/Main Menu.tscn")
+	if get_tree().change_scene("res://Scenes/Main Menu.tscn") != OK:
+		print("Cannot load Main Menu scene")
 
 
 func _ready():

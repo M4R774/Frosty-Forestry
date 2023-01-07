@@ -5,6 +5,7 @@ signal rock_hit
 
 export var speed = 400
 var screen_size
+var can_move = true
 var can_saw = true
 export var saw_cooldown = 1
 onready var sprites = [preload("res://Sprites/traktor.png"), preload("res://Sprites/traktor_no_saw.png")]
@@ -16,23 +17,23 @@ func _ready():
 
 
 func _process(delta):
-	#print(position)
 	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-	
-	if Input.is_action_just_pressed("activate_saw") and can_saw:
-		can_saw = false
-		$Saw.monitoring = true
-		$Saw/ColorRect.visible = true
-		$SawActive.start()
-		get_node("ChainsawSound").play()
+	if can_move:
+		if Input.is_action_pressed("move_right"):
+			velocity.x += 1
+		if Input.is_action_pressed("move_left"):
+			velocity.x -= 1
+		if Input.is_action_pressed("move_down"):
+			velocity.y += 1
+		if Input.is_action_pressed("move_up"):
+			velocity.y -= 1
+		
+		if Input.is_action_just_pressed("activate_saw") and can_saw:
+			can_saw = false
+			$Saw.monitoring = true
+			$Saw/ColorRect.visible = true
+			$SawActive.start()
+			get_node("ChainsawSound").play()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -63,6 +64,7 @@ func _on_Player_body_entered(body):
 	if body.is_in_group("rock"):
 		body.queue_free()
 		emit_signal("rock_hit")
+		can_move = false
 		print("hit rock")
 	#hide()
 	#$CollisionShape2D.set_deferred("disabled", true)
