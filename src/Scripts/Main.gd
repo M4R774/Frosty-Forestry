@@ -1,6 +1,5 @@
 extends Node
 
-var score = 0
 onready var tree_scene = preload("res://Scenes/Tree.tscn")
 onready var rock_scene = preload("res://Scenes/Rock.tscn")
 onready var tree_layer = $ParallaxBackground/Trees
@@ -43,7 +42,7 @@ func _on_RockSpawner_timeout():
 
 
 func _on_Player_tree_cut():
-	score += 1
+	$UserInterface/ScoreLabel.increment_score()
 
 
 func _on_Player_rock_hit():

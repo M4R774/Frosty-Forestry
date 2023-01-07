@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/snow.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/bluesky.png" type="Texture" id=5]
+[ext_resource path="res://default_theme.tres" type="Theme" id=6]
+[ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=7]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -50,6 +52,19 @@ autostart = true
 
 [node name="HitRockDelay" type="Timer" parent="."]
 one_shot = true
+
+[node name="UserInterface" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 6 )
+
+[node name="ScoreLabel" type="Label" parent="UserInterface"]
+margin_left = 7.0
+margin_top = 192.0
+margin_right = 135.0
+margin_bottom = 224.0
+text = "Forest raked: 0"
+script = ExtResource( 7 )
 
 [connection signal="area_entered" from="Player" to="Player" method="_on_Player_area_entered"]
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
