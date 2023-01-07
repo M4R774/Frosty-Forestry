@@ -5,6 +5,7 @@ signal rock_hit
 
 export var speed = 400
 var screen_size
+var health = 3
 
 
 func _ready():
@@ -49,11 +50,15 @@ func _on_Player_body_entered(body):
 	if body.is_in_group("tree"):
 		#print("tree hit")
 		body.cut_down()
+		emit_signal("tree_cut")
 	if body.is_in_group("rock"):
+		body.queue_free()
 		emit_signal("rock_hit")
+		health -= 1
 		print("hit rock")
+	if health == 0:
+		get_tree().reload_current_scene()
 	#hide()
-	emit_signal("tree_cut")
 	#$CollisionShape2D.set_deferred("disabled", true)
 
 
