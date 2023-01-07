@@ -9,8 +9,8 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
-	position.x -= 200 * delta
+#func _process(delta):
+#	position.x -= 200 * delta
 
 
 func cut_down():

@@ -1,5 +1,7 @@
 extends Area2D
+
 signal tree_cut
+signal rock_hit
 
 export var speed = 400
 var screen_size
@@ -48,6 +50,7 @@ func _on_Player_body_entered(body):
 		#print("tree hit")
 		body.cut_down()
 	if body.is_in_group("rock"):
+		emit_signal("rock_hit")
 		print("hit rock")
 	#hide()
 	emit_signal("tree_cut")

@@ -3,6 +3,8 @@ extends Node
 var score = 0
 onready var tree_scene = preload("res://Scenes/Tree.tscn")
 onready var rock_scene = preload("res://Scenes/Rock.tscn")
+onready var tree_layer = $ParallaxBackground/Trees
+var spawn_x = 1200
 
 
 func _ready():
@@ -10,26 +12,25 @@ func _ready():
 
 
 func _process(delta):
+	spawn_x += 200 * delta
 	# for debugging
 	if Input.is_action_just_pressed("jump"):
 		spawn_tree()
 
 
 func spawn_tree():
-	var spawn_position = Vector2(1200, rand_range(300, 550))
+	var spawn_position = Vector2(int(spawn_x), rand_range(300, 550))
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
-	add_child(tree)
-	move_child(tree, 2)
-	#print("tree spawned to pos ", spawn_position)
+	tree_layer.add_child(tree)
+	print("tree spawned to pos ", spawn_position)
 
 
 func spawn_rock():
-	var spawn_position = Vector2(1200, rand_range(300, 550))
+	var spawn_position = Vector2(int(spawn_x), rand_range(300, 550))
 	var rock = rock_scene.instance()
 	rock.position = spawn_position
-	add_child(rock)
-	move_child(rock, 2)
+	tree_layer.add_child(rock)
 
 
 func _on_TreeSpawner_timeout():
@@ -42,4 +43,13 @@ func _on_RockSpawner_timeout():
 
 func _on_Player_tree_cut():
 	score += 1
+
+
+func _on_Player_rock_hit():
+	$ParallaxBackground.can_scroll = false
+	$HitRockDelay.start()
+
+
+func _on_HitRockDelay_timeout():
+	$ParallaxBackground.can_scroll = true
 
