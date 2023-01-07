@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
@@ -9,10 +9,15 @@
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=7]
 [ext_resource path="res://Sounds/harvester.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Sounds/diesel-truck-idling.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/diesel-truck-starting-short.mp3" type="AudioStream" id=10]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 speed = 400
+
+[node name="EngineStarting" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
 
 [node name="EngineSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )

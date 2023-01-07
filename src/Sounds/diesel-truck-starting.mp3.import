@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/diesel-truck-starting.mp3-fbbb718c258952ee0afbe25da3114a27.mp3str"
+
+[deps]
+
+source_file="res://Sounds/diesel-truck-starting.mp3"
+dest_files=[ "res://.import/diesel-truck-starting.mp3-fbbb718c258952ee0afbe25da3114a27.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
