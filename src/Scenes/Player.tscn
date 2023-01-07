@@ -7,7 +7,7 @@
 [ext_resource path="res://Scripts/PlayerParent.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 142.5, 111.5 )
+extents = Vector2( 123, 65.75 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 79, 36 )
@@ -91,7 +91,12 @@ scale_amount_random = 0.5
 color_ramp = SubResource( 3 )
 hue_variation_curve = SubResource( 4 )
 
+[node name="HitRockDelay" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Player" to="Player" method="_on_Player_body_entered"]
+[connection signal="rock_hit" from="Player" to="." method="_on_Player_rock_hit"]
 [connection signal="timeout" from="Player/SawCooldown" to="Player" method="_on_SawCooldown_timeout"]
 [connection signal="timeout" from="Player/SawActive" to="Player" method="_on_SawActive_timeout"]
 [connection signal="body_entered" from="Player/Saw" to="Player" method="_on_Saw_body_entered"]
+[connection signal="timeout" from="HitRockDelay" to="." method="_on_HitRockDelay_timeout"]

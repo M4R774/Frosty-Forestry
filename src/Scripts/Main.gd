@@ -39,12 +39,3 @@ func _on_RockSpawner_timeout():
 	spawn_rock()
 	$RockSpawner.start(rock_spawn_rate / $ParallaxBackground.accelleration)
 
-
-func _on_Player_rock_hit():
-	$ParallaxBackground.can_scroll = false
-	$HitRockDelay.start()
-
-
-func _on_HitRockDelay_timeout():
-	$ParallaxBackground.can_scroll = true
-
