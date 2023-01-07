@@ -1,8 +1,8 @@
-extends Label
+extends RichTextLabel
 
 var goal = 5
 var _timer = null
-
+var blink_counter = 1
 
 func _init():
 	text = "Boss wants: %s ?!" % goal
@@ -28,3 +28,21 @@ func _on_Timer_timeout():
 		end_game()
 	goal += 1
 	text = "Boss wants: %s ?!" % goal
+	blink_counter = 0
+
+
+func flashText(delta, sinTime):
+	var _visible = true
+	if sinTime > 0:
+		_visible = true
+		blink_counter += delta
+	else:
+		_visible = false
+	visible = _visible
+
+
+func _physics_process(delta):
+	if blink_counter < 1:
+		blink_counter += delta
+		var sinTime = sin(blink_counter * 15)
+		flashText(delta, sinTime)
