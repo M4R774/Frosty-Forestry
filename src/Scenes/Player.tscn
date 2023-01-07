@@ -4,22 +4,22 @@
 [ext_resource path="res://Sprites/traktor.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 142.5, 111.5 )
+extents = Vector2( 123, 65.75 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 79, 36 )
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 1 )
-saw_cooldown = 5
+saw_cooldown = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -68.25, 0 )
+position = Vector2( -100.5, 22.875 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D"]
-position = Vector2( 0, 0.5 )
+position = Vector2( 64.5, -45.25 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
