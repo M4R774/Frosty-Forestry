@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+export var isCut = false
 
 onready var cut_sprite = preload("res://Sprites/tree_cut.png")
 
@@ -15,6 +16,7 @@ func _ready():
 
 func cut_down():
 	$CollisionShape2D/Sprite.set_texture(cut_sprite)
+	isCut = true
 
 
 func _on_VisibilityNotifier2D_screen_exited():

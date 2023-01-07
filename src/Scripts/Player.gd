@@ -51,7 +51,7 @@ func _process(delta):
 
 
 func _on_Player_body_entered(body):
-	if body.is_in_group("tree"):
+	if body.is_in_group("tree") and not body.isCut:
 		#print("tree hit")
 		body.cut_down()
 		emit_signal("tree_cut")
