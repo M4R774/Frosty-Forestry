@@ -4,13 +4,12 @@ signal tree_cut
 export var speed = 400
 var screen_size
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	#hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(position)
 	var velocity = Vector2.ZERO
@@ -48,11 +47,12 @@ func _on_Player_body_entered(body):
 	if body.is_in_group("tree"):
 		#print("tree hit")
 		body.cut_down()
-	if body.is_in_group("tree"):
+	if body.is_in_group("rock"):
 		print("hit rock")
 	#hide()
 	emit_signal("tree_cut")
 	#$CollisionShape2D.set_deferred("disabled", true)
+
 
 func start(pos):
 	position = pos

@@ -16,5 +16,6 @@ func _process(delta):
 func cut_down():
 	$CollisionShape2D/Sprite.set_texture(cut_sprite)
 
+
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
