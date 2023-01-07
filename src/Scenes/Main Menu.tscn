@@ -115,7 +115,8 @@ text = "How to play:
 Controls: Arrows/WASD
 Spacebar: Chainsaw
 
-Collect as many trees as you can. Watch out for rocks!"
+Collect as many trees as the boss wants.
+Watch out for rocks!"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_top = 473.0

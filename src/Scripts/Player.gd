@@ -62,7 +62,7 @@ func _process(delta):
 
 func _on_Player_body_entered(body):
 	if body.is_in_group("rock"):
-		body.queue_free()
+		body.break_rock()
 		emit_signal("rock_hit")
 		can_move = false
 		print("hit rock")
@@ -77,6 +77,7 @@ func start(pos):
 
 
 func _on_SawActive_timeout():
+	$ChainsawSound.stop()
 	$SawCooldown.start(saw_cooldown)
 	$Saw.monitoring = false
 	$Saw/ColorRect.visible = false

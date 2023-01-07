@@ -24,6 +24,7 @@ func _on_Player_rock_hit():
 	#life_sprites[lives].visible = false
 	blink_counter = 0
 	if lives == 0:
+		$Player.can_move = false
 		$OutOfLivesSound.play()
 		$GameOverDelay.start()
 

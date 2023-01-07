@@ -126,5 +126,11 @@ text = "Boss wants:  00 ?!"
 scroll_active = false
 script = ExtResource( 11 )
 
+[node name="StartDelay" type="Timer" parent="YSort/Player/UserInterface/GoalLabel"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]
+[connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/StartDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_StartDelay_timeout"]
