@@ -2,7 +2,7 @@ extends Node
 
 onready var tree_scene = preload("res://Scenes/Tree.tscn")
 onready var rock_scene = preload("res://Scenes/Rock.tscn")
-onready var tree_layer = $ParallaxBackground/Trees
+onready var tree_layer = $YSort
 var spawn_x = 1200
 var tree_spawn_rate = 1
 var rock_spawn_rate = 4.75
@@ -11,11 +11,6 @@ export var speed = 200
 
 func _ready():
 	randomize()
-
-
-func _process(delta):
-	spawn_x += speed * delta * $ParallaxBackground.accelleration
-	# for debugging
 
 
 func spawn_tree():

@@ -51,11 +51,6 @@ texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 205, 164 )
 
-[node name="Trees" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 172, 438 )
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 301 )
 
@@ -82,8 +77,13 @@ margin_bottom = 224.0
 text = "Forest raked: 0"
 script = ExtResource( 7 )
 
-[connection signal="rock_hit" from="Player" to="." method="_on_Player_rock_hit"]
-[connection signal="tree_cut" from="Player" to="." method="_on_Player_tree_cut"]
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 4 )]
+position = Vector2( 172, 438 )
+
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]
 [connection signal="timeout" from="HitRockDelay" to="." method="_on_HitRockDelay_timeout"]
+[connection signal="rock_hit" from="YSort/Player" to="." method="_on_Player_rock_hit"]
+[connection signal="tree_cut" from="YSort/Player" to="." method="_on_Player_tree_cut"]
