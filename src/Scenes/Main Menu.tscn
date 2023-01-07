@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Main.tscn" type="PackedScene" id=3]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 2 )
+mainGameScene = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 601.0
+color = Color( 0.431373, 0.431373, 0.431373, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="Menu Buttons" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 492.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Menu Buttons"]
+margin_right = 492.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+text = "[Insert game name here]"
+align = 1
+valign = 1
+
+[node name="New Game Button" type="Button" parent="MarginContainer/HBoxContainer/Menu Buttons"]
+margin_top = 200.0
+margin_right = 492.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "Start game"
+
+[node name="Options Button" type="Button" parent="MarginContainer/HBoxContainer/Menu Buttons"]
+margin_top = 400.0
+margin_right = 492.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "Options"
+
+[node name="How to play" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 512.0
+margin_right = 1004.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+
+[node name="Instructions" type="RichTextLabel" parent="MarginContainer/HBoxContainer/How to play"]
+margin_right = 492.0
+margin_bottom = 458.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "How to play:
+
+Controls: Arrows/WASD
+
+Collect as many trees as you can. Watch out for rocks!
+
+"
+
+[node name="Credits" type="Label" parent="MarginContainer/HBoxContainer/How to play"]
+margin_top = 478.0
+margin_right = 492.0
+margin_bottom = 580.0
+text = "A Ludum Dare 52 game by Tatsoni, Rafla, Saamac1 and Martta"
+autowrap = true
+
+[connection signal="button_up" from="MarginContainer/HBoxContainer/Menu Buttons/New Game Button" to="." method="_on_New_Game_Button_button_up"]
