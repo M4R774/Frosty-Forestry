@@ -12,7 +12,9 @@ onready var broken_sprite = preload("res://Sprites/rock_broken.png")
 
 
 func cut_down():
-	$CollisionShape2D/Sprite.set_texture(cut_sprite)
+	$CollisionShape2D/AnimatedSprite.animation = "fall"
+	$CollisionShape2D/AnimatedSprite.play()
+	# $CollisionShape2D/Sprite.set_texture(cut_sprite)
 	isCut = true
 
 
@@ -24,3 +26,9 @@ func break_rock():
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $CollisionShape2D/AnimatedSprite.animation == "fall":
+		$CollisionShape2D/AnimatedSprite.frame = 7
+		$CollisionShape2D/AnimatedSprite.stop()

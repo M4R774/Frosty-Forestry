@@ -75,7 +75,7 @@ frames = SubResource( 5 )
 animation = "saw"
 
 [node name="Saw" type="Area2D" parent="Player"]
-position = Vector2( -68.25, 0 )
+position = Vector2( -106, 22 )
 scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
