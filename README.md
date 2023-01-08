@@ -10,6 +10,8 @@ A small game made for Ludum Dare 52 (theme: Harvest).
 
 ## Controls
 
+|  Action | Keys |
+| ------------- | ------------- |
 | Move  | Arrow keys / WASD  |
 | Use SAW  | Space  |
 
