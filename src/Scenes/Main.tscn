@@ -76,9 +76,9 @@ theme = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 36.0
-margin_top = 501.0
+margin_top = 490.0
 margin_right = 1024.0
-margin_bottom = 561.0
+margin_bottom = 560.0
 color = Color( 0.113725, 0.168627, 0.32549, 1 )
 
 [node name="Lives" type="Control" parent="YSort/Player/UserInterface"]
@@ -87,9 +87,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = 525.0
-margin_top = 482.0
+margin_top = 478.0
 margin_right = 565.0
-margin_bottom = 522.0
+margin_bottom = 518.0
 
 [node name="Life0" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
 position = Vector2( -75, 25 )
