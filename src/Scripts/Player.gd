@@ -79,6 +79,7 @@ func _on_SawCooldown_timeout():
 
 
 func _on_Saw_body_entered(body):
+	# TODO: Auton kanssa sopivaksi
 	if body.is_in_group("tree") and not body.isCut:
 		pass
 		#print("tree hit")

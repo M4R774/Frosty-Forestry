@@ -1,7 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/snow.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/bluesky.png" type="Texture" id=5]
@@ -13,10 +12,12 @@
 [ext_resource path="res://Scripts/GoalLabel.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/saw_blade.png" type="Texture" id=12]
 [ext_resource path="res://header_theme.tres" type="Theme" id=13]
+[ext_resource path="res://Scenes/Road.tscn" type="PackedScene" id=14]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 tree_spawn_rate = 0.25
+road_tile_spawn_rate = 1
 playerNodePath = NodePath("YSort/Player")
 
 [node name="EngineStarting" type="AudioStreamPlayer" parent="."]
@@ -31,8 +32,19 @@ autoplay = true
 stream = ExtResource( 8 )
 autoplay = true
 
+[node name="Road" parent="." instance=ExtResource( 14 )]
+position = Vector2( 140, 360 )
+
+[node name="Road5" parent="." instance=ExtResource( 14 )]
+position = Vector2( 904, 359 )
+
+[node name="Road4" parent="." instance=ExtResource( 14 )]
+position = Vector2( 649, 359 )
+
+[node name="Road3" parent="." instance=ExtResource( 14 )]
+position = Vector2( 395, 360 )
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-script = ExtResource( 2 )
 
 [node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.9, 1 )
@@ -88,6 +100,19 @@ margin_bottom = -110.0
 theme = ExtResource( 13 )
 text = "TRY AGAIN!"
 align = 1
+
+[node name="RoadModeToggler" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="RoadModeTransition" type="Timer" parent="RoadModeToggler"]
+
+[node name="CarSpawner" type="Timer" parent="RoadModeToggler"]
+wait_time = 5.0
+autostart = true
+
+[node name="RoadTileSpawner" type="Timer" parent="RoadModeToggler"]
+autostart = true
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -167,6 +192,10 @@ one_shot = true
 
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]
+[connection signal="timeout" from="RoadModeToggler" to="." method="_on_RoadModeToggler_timeout"]
+[connection signal="timeout" from="RoadModeToggler/RoadModeTransition" to="." method="_on_RoadModeTransition_timeout"]
+[connection signal="timeout" from="RoadModeToggler/CarSpawner" to="." method="_on_CarSpawner_timeout"]
+[connection signal="timeout" from="RoadModeToggler/RoadTileSpawner" to="." method="_on_RoadTileSpawner_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/StartDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_StartDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/WinDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_WinDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/LoseDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_LoseDelay_timeout"]
