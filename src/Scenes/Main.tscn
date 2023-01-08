@@ -108,8 +108,10 @@ align = 1
 
 [node name="RoadModeToggler" type="Timer" parent="."]
 wait_time = 30.0
+one_shot = true
 
 [node name="RoadModeTransition" type="Timer" parent="RoadModeToggler"]
+one_shot = true
 
 [node name="CarSpawner" type="Timer" parent="RoadModeToggler"]
 wait_time = 2.0
@@ -117,6 +119,10 @@ autostart = true
 
 [node name="RoadTileSpawner" type="Timer" parent="RoadModeToggler"]
 autostart = true
+
+[node name="StopRoadMode" type="Timer" parent="RoadModeToggler"]
+wait_time = 15.0
+one_shot = true
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -200,6 +206,7 @@ one_shot = true
 [connection signal="timeout" from="RoadModeToggler/RoadModeTransition" to="." method="_on_RoadModeTransition_timeout"]
 [connection signal="timeout" from="RoadModeToggler/CarSpawner" to="." method="_on_CarSpawner_timeout"]
 [connection signal="timeout" from="RoadModeToggler/RoadTileSpawner" to="." method="_on_RoadTileSpawner_timeout"]
+[connection signal="timeout" from="RoadModeToggler/StopRoadMode" to="." method="_on_StopRoadMode_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/StartDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_StartDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/WinDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_WinDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/LoseDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_LoseDelay_timeout"]

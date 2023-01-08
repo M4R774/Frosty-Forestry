@@ -10,6 +10,7 @@ export var tree_spawn_rate = 1.0
 export var rock_spawn_rate = 4.75
 
 export var road_mode_toggle_rate = 30
+export var road_mode_duration = 15
 export var road_mode_transition_delay = 2
 export var car_spawn_rate = 2
 export var road_tile_spawn_rate = .3
@@ -58,13 +59,23 @@ func _on_RockSpawner_timeout():
 		spawn_rock()
 	$RockSpawner.start(rock_spawn_rate)
 
+# starts road mode
 func _on_RoadModeToggler_timeout():
 	$RoadModeToggler/RoadModeTransition.start(road_mode_transition_delay)
+	$RoadModeToggler/StopRoadMode.start(road_mode_duration)
 	transition_ongoing = true
-	if road_mode_is_active:
-		road_mode_is_active = false
-	else:
-		road_mode_is_active = true
+	road_mode_is_active = true
+#	if road_mode_is_active:
+#		road_mode_is_active = false
+#	else:
+#		road_mode_is_active = true
+
+# stops road mode
+func _on_StopRoadMode_timeout():
+	transition_ongoing = true
+	road_mode_is_active = false
+	$RoadModeToggler/RoadModeTransition.start(road_mode_transition_delay)
+	$RoadModeToggler.start(road_mode_toggle_rate)
 
 
 func _on_RoadModeTransition_timeout():
