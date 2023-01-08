@@ -48,9 +48,9 @@ func _process(delta):
 	position.x = clamp(position.x, -350, 500)
 	var road = get_node("/root/Main/ParallaxBackground/Road/Sprite")
 	var road_height_in_pixels = road.texture.get_height() * road.scale.y
-	var road_upper_limit = road.get_global_position().y - road_height_in_pixels
-	var road_lower_limit = road.get_global_position().y + road_height_in_pixels
-	position.y = clamp(position.y, road_upper_limit - 70, road_lower_limit - 20)
+	var road_upper_limit = road.get_global_position().y - road_height_in_pixels - 90
+	var road_lower_limit = road.get_global_position().y + road_height_in_pixels - 20 - 135
+	position.y = clamp(position.y, road_upper_limit, road_lower_limit)
 
 
 func _on_Player_body_entered(body):
