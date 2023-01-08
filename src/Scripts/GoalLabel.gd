@@ -1,7 +1,7 @@
 extends RichTextLabel
 
 
-var goal = 50
+var goal = 100
 var _timer = null
 var blink_counter = 1
 
@@ -38,7 +38,7 @@ func end_game(win):
 func _on_Timer_timeout():
 	if $"/root/Main/YSort/Player/UserInterface/ScoreLabel".score >= goal:
 		end_game(true)
-	goal += 5 # was 1
+	goal += 4 # was 1
 	text = "Boss wants: %s ?!" % goal
 	blink_counter = 0
 

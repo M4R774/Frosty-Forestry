@@ -5,17 +5,18 @@ onready var rock_scene = preload("res://Scenes/Rock.tscn")
 onready var car_scene = preload("res://Scenes/Car.tscn")
 onready var road_scene = preload("res://Scenes/Road.tscn")
 onready var tree_layer = $YSort
-var spawn_x = 1200
+var spawn_x = 600
 export var tree_spawn_rate = 1.0
 export var rock_spawn_rate = 4.75
 
 export var road_mode_toggle_rate = 30
 export var road_mode_transition_delay = 2
-export var car_spawn_rate = 3
-export var road_tile_spawn_rate = 5
+export var car_spawn_rate = 2
+export var road_tile_spawn_rate = .3
 
 export var speed = 200
 export (NodePath) var playerNodePath = ""
+
 var road_mode_is_active : bool = false
 var transition_ongoing : bool = false
 
@@ -68,7 +69,15 @@ func _on_RoadModeToggler_timeout():
 
 func _on_RoadModeTransition_timeout():
 	transition_ongoing = false
-	
+	if road_mode_is_active:
+		$BackgroundMusicSlow.volume_db = -80
+		$BackgroundMusicFast.volume_db = 0
+		$YSort/Player.speed = 600
+	else:
+		$BackgroundMusicSlow.volume_db = 0
+		$BackgroundMusicFast.volume_db = -80
+		$YSort/Player.speed = 200
+
 
 func _on_CarSpawner_timeout():
 	if road_mode_is_active and !transition_ongoing:
@@ -82,10 +91,11 @@ func _on_CarSpawner_timeout():
 
 
 func _on_RoadTileSpawner_timeout():
-	if road_mode_is_active and !transition_ongoing:
+	if road_mode_is_active:
 		var playerPosition : Vector2 = get_node(playerNodePath).get_position()
-		var spawn_position = Vector2(int(playerPosition.x + spawn_x), 365)
+		var spawn_position = Vector2(int(playerPosition.x + spawn_x + 300), 365)
 		var road = road_scene.instance()
 		road.position = spawn_position
 		tree_layer.add_child(road)
+		$RoadModeToggler/RoadTileSpawner.start(road_tile_spawn_rate)
 
