@@ -58,9 +58,13 @@ func _on_Player_body_entered(body):
 		body.break_rock()
 		emit_signal("rock_hit")
 		can_move = false
+		$NoSawBladeSprite.visible = true
+		$AnimatedSprite.visible = false
 	elif body.is_in_group("car"):
 		emit_signal("rock_hit")
 		body.break_car()
+		$NoSawBladeSprite.visible = true
+		$AnimatedSprite.visible = false
 
 
 func _on_SawActive_timeout():

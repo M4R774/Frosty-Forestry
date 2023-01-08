@@ -11,7 +11,7 @@
 [ext_resource path="res://Sounds/diesel-truck-idling.mp3" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/diesel-truck-starting-short.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/GoalLabel.gd" type="Script" id=11]
-[ext_resource path="res://Sprites/saw_space_icon.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/saw_blade.png" type="Texture" id=12]
 [ext_resource path="res://header_theme.tres" type="Theme" id=13]
 [ext_resource path="res://Scenes/Road.tscn" type="PackedScene" id=14]
 

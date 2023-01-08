@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/traktor.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/traktor_no_saw.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/Doom_chainsaw.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sprites/smoke.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/PlayerParent.gd" type="Script" id=5]
@@ -63,9 +63,9 @@ position = Vector2( -54.5, -19 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Player"]
+[node name="NoSawBladeSprite" type="Sprite" parent="Player"]
 visible = false
-position = Vector2( 17.8125, -54.125 )
+position = Vector2( -20.1875, -53.125 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 

@@ -37,6 +37,8 @@ func _on_Player_rock_hit():
 func _on_HitRockDelay_timeout():
 	can_scroll = true
 	$Player.can_move = true
+	$Player/NoSawBladeSprite.visible = false
+	$Player/AnimatedSprite.visible = true
 
 
 func deactive_controls():
