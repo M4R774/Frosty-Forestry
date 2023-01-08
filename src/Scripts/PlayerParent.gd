@@ -2,7 +2,7 @@ extends Node2D
 
 export var speed = 200
 var can_scroll = true
-var lives = 3
+var lives = 4
 onready var life_sprites = [$UserInterface/Lives/Life0, $UserInterface/Lives/Life1, $UserInterface/Lives/Life2]
 var blink_counter = 1
 
@@ -51,4 +51,4 @@ func flashText(delta, sinTime):
 		blink_counter += delta
 	else:
 		_visible = true
-	life_sprites[lives].visible = _visible
+	life_sprites[lives - 1].visible = _visible
