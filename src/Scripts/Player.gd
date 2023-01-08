@@ -13,10 +13,9 @@ onready var sprites = [preload("res://Sprites/traktor.png"), preload("res://Spri
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	$CollisionShape2D/AnimatedSprite.animation = "saw"
-	$CollisionShape2D/AnimatedSprite.play()
-	$CollisionShape2D/AnimatedSprite.speed_scale = 0.25
-	#hide()
+	$AnimatedSprite.animation = "saw"
+	$AnimatedSprite.play()
+	$AnimatedSprite.speed_scale = 0.25
 
 
 func _process(delta):
@@ -37,7 +36,7 @@ func _process(delta):
 			# Play saw animation
 			#$CollisionShape2D/AnimatedSprite.animation = "saw"
 			#$CollisionShape2D/AnimatedSprite.play()
-			$CollisionShape2D/AnimatedSprite.speed_scale = 1
+			$AnimatedSprite.speed_scale = 1
 			$SawActive.start()
 			get_node("ChainsawSound").play()
 	
@@ -59,7 +58,9 @@ func _on_Player_body_entered(body):
 		body.break_rock()
 		emit_signal("rock_hit")
 		can_move = false
-		print("hit rock")
+	elif body.is_in_group("car"):
+		emit_signal("rock_hit")
+		body.break_car()
 
 
 func _on_SawActive_timeout():
@@ -67,15 +68,15 @@ func _on_SawActive_timeout():
 	$SawCooldown.start(saw_cooldown)
 	$Saw.monitoring = false
 	# Stop saw animation
-	$CollisionShape2D/AnimatedSprite.stop()
+	$AnimatedSprite.stop()
 
 
 func _on_SawCooldown_timeout():
 	#$CollisionShape2D/Sprite.set_texture(sprites[0])
 	can_saw = true
-	$CollisionShape2D/AnimatedSprite.animation = "saw"
-	$CollisionShape2D/AnimatedSprite.play()
-	$CollisionShape2D/AnimatedSprite.speed_scale = 0.25
+	$AnimatedSprite.animation = "saw"
+	$AnimatedSprite.play()
+	$AnimatedSprite.speed_scale = 0.25
 
 
 func _on_Saw_body_entered(body):

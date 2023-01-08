@@ -12,7 +12,6 @@ func _init():
 
 func end_game(win):
 	$"../..".deactive_controls()
-	var old_camera = $"../..".get_node("Camera2D")
 	var new_camera = $"../../../../EndGameCamera"
 	new_camera.position.x = $"../..".position.x
 	new_camera.current = true

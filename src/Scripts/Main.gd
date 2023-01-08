@@ -23,6 +23,7 @@ var transition_ongoing : bool = false
 
 func _ready():
 	randomize()
+	$RoadModeToggler.start(road_mode_toggle_rate)
 
 
 func spawn_tree():

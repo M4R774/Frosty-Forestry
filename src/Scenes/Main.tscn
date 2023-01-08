@@ -108,7 +108,6 @@ align = 1
 
 [node name="RoadModeToggler" type="Timer" parent="."]
 wait_time = 30.0
-autostart = true
 
 [node name="RoadModeTransition" type="Timer" parent="RoadModeToggler"]
 

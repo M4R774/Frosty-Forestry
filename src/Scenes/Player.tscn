@@ -15,7 +15,7 @@
 [ext_resource path="res://Sprites/saha3.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 78.125, 14 )
+extents = Vector2( 113, 46 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -59,19 +59,19 @@ one_shot = true
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( -52.0625, -9 )
+position = Vector2( -54.5, -19 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Player/CollisionShape2D"]
+[node name="Sprite" type="Sprite" parent="Player"]
 visible = false
-position = Vector2( 139.75, -90.25 )
-scale = Vector2( 6, 6 )
+position = Vector2( 17.8125, -54.125 )
+scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player/CollisionShape2D"]
-position = Vector2( 76.125, -88 )
-scale = Vector2( 6, 6 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+position = Vector2( -14, -53 )
+scale = Vector2( 3, 3 )
 frames = SubResource( 5 )
 animation = "saw"
 
@@ -93,7 +93,7 @@ margin_bottom = 78.0
 color = Color( 1, 0, 0.72549, 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
-position = Vector2( -14.875, -122 )
+position = Vector2( -32.875, -122 )
 z_index = -1
 z_as_relative = false
 amount = 10
