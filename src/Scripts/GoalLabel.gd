@@ -38,7 +38,7 @@ func end_game(win):
 func _on_Timer_timeout():
 	if $"/root/Main/YSort/Player/UserInterface/ScoreLabel".score >= goal:
 		end_game(true)
-	goal += 4 # was 1
+	goal += 3 # was 1
 	text = "Boss wants: %s ?!" % goal
 	blink_counter = 0
 
