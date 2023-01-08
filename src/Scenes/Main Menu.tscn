@@ -74,23 +74,15 @@ margin_bottom = 253.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Menu Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
-margin_right = 452.0
-margin_bottom = 253.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="New Game Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+margin_left = 122.0
+margin_top = 107.0
+margin_right = 330.0
+margin_bottom = 145.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme = ExtResource( 1 )
-custom_constants/separation = 50
-
-[node name="New Game Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons"]
-margin_left = 103.0
-margin_top = 62.0
-margin_right = 369.0
-margin_bottom = 150.0
-size_flags_horizontal = 5
-size_flags_vertical = 5
-theme = ExtResource( 1 )
-text = "Start game"
+text = " Start game "
 
 [node name="How to play" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 472.0
@@ -125,4 +117,4 @@ autowrap = true
 position = Vector2( 512, 300 )
 current = true
 
-[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons/New Game Button" to="." method="_on_New_Game_Button_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/New Game Button" to="." method="_on_New_Game_Button_button_up"]
