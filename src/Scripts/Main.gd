@@ -29,6 +29,8 @@ func spawn_tree():
 	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(200, 400))
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
+	tree.z_as_relative = false
+	tree.z_index = spawn_position.y
 	tree_layer.add_child(tree)
 	#print("tree spawned to pos ", spawn_position)
 
@@ -38,6 +40,8 @@ func spawn_rock():
 	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(200, 400))
 	var rock = rock_scene.instance()
 	rock.position = spawn_position
+	rock.z_as_relative = false
+	rock.z_index = spawn_position.y
 	tree_layer.add_child(rock)
 
 
@@ -72,6 +76,8 @@ func _on_CarSpawner_timeout():
 		var spawn_position = Vector2(int(playerPosition.x + spawn_x*2), rand_range(200, 400))
 		var car = car_scene.instance()
 		car.position = spawn_position
+		car.z_as_relative = false
+		car.z_index = spawn_position.y
 		tree_layer.add_child(car)
 
 

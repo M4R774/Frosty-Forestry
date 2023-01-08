@@ -6,6 +6,11 @@ var lives = 3
 onready var life_sprites = [$UserInterface/Lives/Life0, $UserInterface/Lives/Life1, $UserInterface/Lives/Life2]
 var blink_counter = 1
 
+
+func update_z_level():
+	z_index = $Player.position.y
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if can_scroll:
@@ -14,9 +19,7 @@ func _physics_process(delta):
 		blink_counter += delta
 		var sinTime = sin(blink_counter * 15)
 		flashText(delta, sinTime)
-#	if Input.is_action_just_pressed("jump"):
-#		lives = 1
-#		_on_Player_rock_hit()
+	update_z_level()
 
 
 func _on_Player_rock_hit():
