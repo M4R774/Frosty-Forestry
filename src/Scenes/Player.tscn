@@ -121,9 +121,6 @@ one_shot = true
 [node name="HitRockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
-[node name="GameOverDelay" type="Timer" parent="."]
-one_shot = true
-
 [node name="OutOfLivesSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
@@ -133,4 +130,3 @@ stream = ExtResource( 7 )
 [connection signal="timeout" from="Player/SawActive" to="Player" method="_on_SawActive_timeout"]
 [connection signal="body_entered" from="Player/Saw" to="Player" method="_on_Saw_body_entered"]
 [connection signal="timeout" from="HitRockDelay" to="." method="_on_HitRockDelay_timeout"]
-[connection signal="timeout" from="GameOverDelay" to="." method="_on_GameOverDelay_timeout"]

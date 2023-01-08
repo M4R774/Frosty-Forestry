@@ -14,19 +14,21 @@ func _physics_process(delta):
 		blink_counter += delta
 		var sinTime = sin(blink_counter * 15)
 		flashText(delta, sinTime)
+#	if Input.is_action_just_pressed("jump"):
+#		lives = 1
+#		_on_Player_rock_hit()
 
 
 func _on_Player_rock_hit():
-	can_scroll = false
-	$HitRockDelay.start()
-	$HitRockSound.play()
 	lives -= 1
-	#life_sprites[lives].visible = false
 	blink_counter = 0
-	if lives == 0:
-		$Player.can_move = false
+	can_scroll = false
+	$HitRockSound.play()
+	if lives > 0:
+		$HitRockDelay.start()
+	elif lives == 0:
+		$UserInterface/GoalLabel.end_game(false)
 		$OutOfLivesSound.play()
-		$GameOverDelay.start()
 
 
 func _on_HitRockDelay_timeout():
@@ -34,9 +36,9 @@ func _on_HitRockDelay_timeout():
 	$Player.can_move = true
 
 
-func _on_GameOverDelay_timeout():
-	if get_tree().reload_current_scene() != OK:
-			print("cannot reload current scene")
+func deactive_controls():
+	$Player.can_move = false
+	$Player/CollisionShape2D.set_deferred("disabled", true)
 
 
 func flashText(delta, sinTime):

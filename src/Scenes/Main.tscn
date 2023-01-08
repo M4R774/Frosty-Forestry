@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Road.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sounds/diesel-truck-starting-short.mp3" type="AudioStream" id=10]
 [ext_resource path="res://Scripts/GoalLabel.gd" type="Script" id=11]
 [ext_resource path="res://Sprites/saw_blade.png" type="Texture" id=12]
+[ext_resource path="res://header_theme.tres" type="Theme" id=13]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -60,6 +61,33 @@ autostart = true
 [node name="RockSpawner" type="Timer" parent="."]
 wait_time = 4.75
 autostart = true
+
+[node name="EndGameCamera" type="Camera2D" parent="."]
+position = Vector2( 551, 299 )
+
+[node name="WinText" type="Label" parent="EndGameCamera"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -401.0
+margin_top = -230.0
+margin_right = 399.0
+margin_bottom = -110.0
+theme = ExtResource( 13 )
+text = "WELL DONE!"
+align = 1
+
+[node name="LoseText" type="Label" parent="EndGameCamera"]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -401.0
+margin_top = -230.0
+margin_right = 399.0
+margin_bottom = -110.0
+theme = ExtResource( 13 )
+text = "TRY AGAIN!"
+align = 1
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -131,6 +159,14 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
+[node name="WinDelay" type="Timer" parent="YSort/Player/UserInterface/GoalLabel"]
+wait_time = 3.0
+one_shot = true
+
+[node name="LoseDelay" type="Timer" parent="YSort/Player/UserInterface/GoalLabel"]
+
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/StartDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_StartDelay_timeout"]
+[connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/WinDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_WinDelay_timeout"]
+[connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/LoseDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_LoseDelay_timeout"]
