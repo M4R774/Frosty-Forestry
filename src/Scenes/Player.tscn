@@ -81,7 +81,7 @@ scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
 [node name="SawCollider" type="CollisionShape2D" parent="Player/Saw"]
-position = Vector2( 59, 106 )
+position = Vector2( 134, 62 )
 shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Player/Saw"]
@@ -93,7 +93,7 @@ margin_bottom = 78.0
 color = Color( 1, 0, 0.72549, 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
-position = Vector2( -80, -60 )
+position = Vector2( -120, -42 )
 z_index = -1
 z_as_relative = false
 amount = 10
