@@ -26,7 +26,7 @@ func _ready():
 
 func spawn_tree():
 	var playerPosition : Vector2 = get_node(playerNodePath).get_position()
-	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(200, 400))
+	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(270, 470))
 	var tree = tree_scene.instance()
 	tree.position = spawn_position
 	tree.z_as_relative = false
@@ -37,7 +37,7 @@ func spawn_tree():
 
 func spawn_rock():
 	var playerPosition : Vector2 = get_node(playerNodePath).get_position()
-	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(200, 400))
+	var spawn_position = Vector2(int(playerPosition.x + spawn_x), rand_range(270, 470))
 	var rock = rock_scene.instance()
 	rock.position = spawn_position
 	rock.z_as_relative = false
@@ -73,7 +73,7 @@ func _on_RoadModeTransition_timeout():
 func _on_CarSpawner_timeout():
 	if road_mode_is_active and !transition_ongoing:
 		var playerPosition : Vector2 = get_node(playerNodePath).get_position()
-		var spawn_position = Vector2(int(playerPosition.x + spawn_x*2), rand_range(200, 400))
+		var spawn_position = Vector2(int(playerPosition.x + spawn_x*2), rand_range(270, 470))
 		var car = car_scene.instance()
 		car.position = spawn_position
 		car.z_as_relative = false

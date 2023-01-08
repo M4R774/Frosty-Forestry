@@ -9,6 +9,7 @@ extents = Vector2( 64.875, 53 )
 [node name="Oil" type="Node2D"]
 
 [node name="Oil" type="StaticBody2D" parent="."]
+position = Vector2( 15, -41 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Oil"]
