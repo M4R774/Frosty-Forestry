@@ -83,21 +83,14 @@ theme = ExtResource( 1 )
 custom_constants/separation = 50
 
 [node name="New Game Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons"]
-margin_right = 452.0
-margin_bottom = 38.0
+margin_left = 103.0
+margin_top = 62.0
+margin_right = 369.0
+margin_bottom = 150.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 theme = ExtResource( 1 )
 text = "Start game"
-
-[node name="Options Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Menu Buttons"]
-margin_top = 88.0
-margin_right = 452.0
-margin_bottom = 126.0
-size_flags_horizontal = 5
-size_flags_vertical = 5
-theme = ExtResource( 1 )
-text = "Options"
 
 [node name="How to play" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 472.0
