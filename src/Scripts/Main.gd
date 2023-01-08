@@ -57,7 +57,6 @@ func _on_RockSpawner_timeout():
 		spawn_rock()
 	$RockSpawner.start(rock_spawn_rate)
 
-
 func _on_RoadModeToggler_timeout():
 	$RoadModeToggler/RoadModeTransition.start(road_mode_transition_delay)
 	transition_ongoing = true

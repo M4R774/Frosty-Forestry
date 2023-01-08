@@ -15,7 +15,7 @@
 [ext_resource path="res://Sprites/saha3.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 118.25, 68.75 )
+extents = Vector2( 78.125, 14 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -45,7 +45,7 @@ limit_top = 0
 limit_bottom = 0
 
 [node name="Player" type="Area2D" parent="."]
-position = Vector2( 0, 299 )
+position = Vector2( 15, 305 )
 script = ExtResource( 1 )
 saw_cooldown = 2
 
@@ -59,7 +59,7 @@ one_shot = true
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( -33, -34.625 )
+position = Vector2( -52.0625, -9 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
@@ -70,18 +70,18 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player/CollisionShape2D"]
-position = Vector2( 75.25, -45 )
+position = Vector2( 76.125, -88 )
 scale = Vector2( 6, 6 )
 frames = SubResource( 5 )
 animation = "saw"
 
 [node name="Saw" type="Area2D" parent="Player"]
-position = Vector2( -0.875, -58 )
+position = Vector2( -1.875, -43 )
 scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
 [node name="SawCollider" type="CollisionShape2D" parent="Player/Saw"]
-position = Vector2( 134, 62 )
+position = Vector2( 87.75, 38 )
 shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Player/Saw"]
