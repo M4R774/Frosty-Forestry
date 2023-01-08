@@ -59,7 +59,7 @@ one_shot = true
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( -138.125, 45.375 )
+position = Vector2( -33, -34.625 )
 scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
@@ -76,7 +76,7 @@ frames = SubResource( 5 )
 animation = "saw"
 
 [node name="Saw" type="Area2D" parent="Player"]
-position = Vector2( -106, 22 )
+position = Vector2( -0.875, -58 )
 scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
@@ -93,7 +93,7 @@ margin_bottom = 78.0
 color = Color( 1, 0, 0.72549, 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Player"]
-position = Vector2( -120, -42 )
+position = Vector2( -14.875, -122 )
 z_index = -1
 z_as_relative = false
 amount = 10

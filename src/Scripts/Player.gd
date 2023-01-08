@@ -49,8 +49,8 @@ func _process(delta):
 	var road = get_node("/root/Main/ParallaxBackground/Road/Sprite")
 	var hud_size_y = get_node("/root/Main/YSort/Player/UserInterface/ColorRect").rect_size.y
 	var road_height_in_pixels = road.texture.get_height() * road.scale.y
-	var road_upper_limit = road.get_global_position().y - road_height_in_pixels - 90
-	var road_lower_limit = road.get_global_position().y + road_height_in_pixels - hud_size_y - 43
+	var road_upper_limit = road.get_global_position().y - road_height_in_pixels - 15
+	var road_lower_limit = road.get_global_position().y + road_height_in_pixels - hud_size_y + 35
 	position.y = clamp(position.y, road_upper_limit, road_lower_limit)
 
 
