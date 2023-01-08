@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/traktor.png" type="Texture" id=2]
@@ -7,9 +7,23 @@
 [ext_resource path="res://Scripts/PlayerParent.gd" type="Script" id=5]
 [ext_resource path="res://Sounds/sfx_sounds_impact6.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/sfx_deathscream_human2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sprites/saha4.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/saha1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/saha6.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/saha2.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/saha5.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/saha3.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 142.5, 111.5 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "saw",
+"speed": 50.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 79, 36 )
@@ -50,9 +64,15 @@ scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Player/CollisionShape2D"]
+visible = false
 position = Vector2( 64.5, -45.25 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player/CollisionShape2D"]
+scale = Vector2( 6, 6 )
+frames = SubResource( 5 )
+animation = "saw"
 
 [node name="Saw" type="Area2D" parent="Player"]
 position = Vector2( -68.25, 0 )

@@ -31,7 +31,9 @@ func _process(delta):
 		if Input.is_action_just_pressed("activate_saw") and can_saw:
 			can_saw = false
 			$Saw.monitoring = true
-			$Saw/ColorRect.visible = true
+			# Play saw animation
+			$CollisionShape2D/AnimatedSprite.animation = "saw"
+			$CollisionShape2D/AnimatedSprite.play()
 			$SawActive.start()
 			get_node("ChainsawSound").play()
 	
@@ -80,8 +82,8 @@ func _on_SawActive_timeout():
 	$ChainsawSound.stop()
 	$SawCooldown.start(saw_cooldown)
 	$Saw.monitoring = false
-	$Saw/ColorRect.visible = false
-	$CollisionShape2D/Sprite.set_texture(sprites[1])
+	# Stop saw animation
+	$CollisionShape2D/AnimatedSprite.stop()
 
 
 func _on_SawCooldown_timeout():
