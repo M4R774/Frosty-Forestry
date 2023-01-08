@@ -26,7 +26,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 79, 36 )
+extents = Vector2( 80.5, 36 )
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.363128, 1 )
@@ -80,7 +80,7 @@ scale = Vector2( 0.5, 0.5 )
 monitoring = false
 
 [node name="SawCollider" type="CollisionShape2D" parent="Player/Saw"]
-position = Vector2( 137.5, 60 )
+position = Vector2( 59, 106 )
 shape = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="Player/Saw"]

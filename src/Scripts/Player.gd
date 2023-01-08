@@ -13,6 +13,9 @@ onready var sprites = [preload("res://Sprites/traktor.png"), preload("res://Spri
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	$CollisionShape2D/AnimatedSprite.animation = "saw"
+	$CollisionShape2D/AnimatedSprite.play()
+	$CollisionShape2D/AnimatedSprite.speed_scale = 0.25
 	#hide()
 
 
@@ -32,17 +35,14 @@ func _process(delta):
 			can_saw = false
 			$Saw.monitoring = true
 			# Play saw animation
-			$CollisionShape2D/AnimatedSprite.animation = "saw"
-			$CollisionShape2D/AnimatedSprite.play()
+			#$CollisionShape2D/AnimatedSprite.animation = "saw"
+			#$CollisionShape2D/AnimatedSprite.play()
+			$CollisionShape2D/AnimatedSprite.speed_scale = 1
 			$SawActive.start()
 			get_node("ChainsawSound").play()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		#$AnimatedSprite.play()
-	else:
-		pass
-		#$AnimatedSprite.stop()
 		
 	position += velocity * delta
 	position.x = clamp(position.x, -350, 500)
@@ -52,15 +52,6 @@ func _process(delta):
 	var road_lower_limit = road.get_global_position().y + road_height_in_pixels
 	position.y = clamp(position.y, road_upper_limit - 70, road_lower_limit - 20)
 
-#	if velocity.x != 0:
-#		$AnimatedSprite.animation = "walk"
-#		$AnimatedSprite.flip_v = false
-#		$AnimatedSprite.flip_h = velocity.x < 0
-#
-#	elif velocity.y != 0:
-#		$AnimatedSprite.animation = "up"
-#		$AnimatedSprite.flip_v = velocity.y > 0
-
 
 func _on_Player_body_entered(body):
 	if body.is_in_group("rock"):
@@ -68,14 +59,6 @@ func _on_Player_body_entered(body):
 		emit_signal("rock_hit")
 		can_move = false
 		print("hit rock")
-	#hide()
-	#$CollisionShape2D.set_deferred("disabled", true)
-
-
-func start(pos):
-	position = pos
-	show()
-	$CollisionShape2D.disabled = false;
 
 
 func _on_SawActive_timeout():
@@ -87,8 +70,11 @@ func _on_SawActive_timeout():
 
 
 func _on_SawCooldown_timeout():
-	$CollisionShape2D/Sprite.set_texture(sprites[0])
+	#$CollisionShape2D/Sprite.set_texture(sprites[0])
 	can_saw = true
+	$CollisionShape2D/AnimatedSprite.animation = "saw"
+	$CollisionShape2D/AnimatedSprite.play()
+	$CollisionShape2D/AnimatedSprite.speed_scale = 0.25
 
 
 func _on_Saw_body_entered(body):
