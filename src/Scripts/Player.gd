@@ -2,6 +2,8 @@ extends Area2D
 
 signal tree_cut
 signal rock_hit
+signal saw_ready
+signal saw_not_ready
 
 export var speed = 400
 var screen_size
@@ -29,8 +31,9 @@ func _process(delta):
 			velocity.y += 1
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1
-		
+
 		if Input.is_action_just_pressed("activate_saw") and can_saw:
+			$"../UserInterface/ChainsawIndicator".visible = false
 			can_saw = false
 			$Saw.monitoring = true
 			# Play saw animation
@@ -77,18 +80,18 @@ func _on_SawActive_timeout():
 
 func _on_SawCooldown_timeout():
 	#$CollisionShape2D/Sprite.set_texture(sprites[0])
+	$"../UserInterface/ChainsawIndicator".visible = true
 	can_saw = true
+	$ChainsawReadySound.play()
 	$AnimatedSprite.animation = "saw"
 	$AnimatedSprite.play()
 	$AnimatedSprite.speed_scale = 0.25
 
 
 func _on_Saw_body_entered(body):
-	# TODO: Auton kanssa sopivaksi
 	if body.is_in_group("tree") and not body.isCut:
 		pass
 		#print("tree hit")
 		body.cut_down()
 		emit_signal("tree_cut")
 		$"/root/Main/YSort/Player/UserInterface/ScoreLabel".increment_score()
-

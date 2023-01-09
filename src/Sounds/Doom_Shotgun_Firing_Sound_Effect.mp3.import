@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Doom_Shotgun_Firing_Sound_Effect.mp3-202b16e9a6517139b05d0ca70494cbc8.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Doom_Shotgun_Firing_Sound_Effect.mp3"
+dest_files=[ "res://.import/Doom_Shotgun_Firing_Sound_Effect.mp3-202b16e9a6517139b05d0ca70494cbc8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/harvester75.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Sprites/snow.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/PlayerParent.gd" type="Script" id=4]
 [ext_resource path="res://Sprites/bluesky.png" type="Texture" id=5]
 [ext_resource path="res://default_theme.tres" type="Theme" id=6]
 [ext_resource path="res://Scripts/ScoreLabel.gd" type="Script" id=7]
@@ -14,6 +14,41 @@
 [ext_resource path="res://Sprites/saw_blade.png" type="Texture" id=12]
 [ext_resource path="res://header_theme.tres" type="Theme" id=13]
 [ext_resource path="res://Scenes/Road.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=15]
+[ext_resource path="res://Sprites/traktor_no_saw.png" type="Texture" id=16]
+[ext_resource path="res://Sounds/sfx_sounds_impact6.wav" type="AudioStream" id=17]
+[ext_resource path="res://Sprites/smoke.png" type="Texture" id=18]
+[ext_resource path="res://Sounds/sfx_deathscream_human2.wav" type="AudioStream" id=19]
+[ext_resource path="res://Sprites/saha6.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/saha5.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/saha2.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/saha4.png" type="Texture" id=23]
+[ext_resource path="res://Sounds/Doom_chainsaw.wav" type="AudioStream" id=24]
+[ext_resource path="res://Sprites/saha3.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/saha1.png" type="Texture" id=26]
+[ext_resource path="res://Sounds/Doom_Shotgun_Firing_Sound_Effect.mp3" type="AudioStream" id=27]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 78.125, 14 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 26 ), ExtResource( 22 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 21 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "saw",
+"speed": 50.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 80.5, 36 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.363128, 1 )
+colors = PoolColorArray( 0.203125, 0.203125, 0.203125, 1, 0.199219, 0.199219, 0.199219, 0 )
+
+[sub_resource type="Curve" id=4]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.965347, 1 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -126,8 +161,97 @@ one_shot = true
 
 [node name="YSort" type="YSort" parent="."]
 
-[node name="Player" parent="YSort" instance=ExtResource( 4 )]
+[node name="Player" type="Node2D" parent="YSort"]
 position = Vector2( 550, 0 )
+script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
+current = true
+limit_top = 0
+limit_bottom = 0
+
+[node name="Player" type="Area2D" parent="YSort/Player"]
+position = Vector2( 15, 305 )
+script = ExtResource( 15 )
+saw_cooldown = 2
+
+[node name="ChainsawReadySound" type="AudioStreamPlayer" parent="YSort/Player/Player"]
+stream = ExtResource( 27 )
+
+[node name="ChainsawSound" type="AudioStreamPlayer" parent="YSort/Player/Player"]
+stream = ExtResource( 24 )
+
+[node name="SawCooldown" type="Timer" parent="YSort/Player/Player"]
+one_shot = true
+
+[node name="SawActive" type="Timer" parent="YSort/Player/Player"]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Player/Player"]
+position = Vector2( -54.5, -19 )
+scale = Vector2( 0.5, 0.5 )
+shape = SubResource( 1 )
+
+[node name="NoSawBladeSprite" type="Sprite" parent="YSort/Player/Player"]
+visible = false
+position = Vector2( -20.1875, -53.125 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 16 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="YSort/Player/Player"]
+position = Vector2( -14, -53 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 5 )
+animation = "saw"
+
+[node name="Saw" type="Area2D" parent="YSort/Player/Player"]
+position = Vector2( -1.875, -43 )
+scale = Vector2( 0.5, 0.5 )
+monitoring = false
+
+[node name="SawCollider" type="CollisionShape2D" parent="YSort/Player/Player/Saw"]
+position = Vector2( 87.75, 38 )
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="YSort/Player/Player/Saw"]
+visible = false
+margin_left = 112.5
+margin_top = 38.0
+margin_right = 152.5
+margin_bottom = 78.0
+color = Color( 1, 0, 0.72549, 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="YSort/Player/Player"]
+position = Vector2( -32, -113 )
+z_index = -1
+z_as_relative = false
+amount = 10
+lifetime = 2.0
+randomness = 1.0
+lifetime_randomness = 0.2
+fixed_fps = 12
+local_coords = false
+texture = ExtResource( 18 )
+emission_shape = 2
+emission_rect_extents = Vector2( 4, 1 )
+direction = Vector2( 0, -1 )
+spread = 15.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.1
+scale_amount = 6.0
+scale_amount_random = 0.5
+color_ramp = SubResource( 3 )
+hue_variation_curve = SubResource( 4 )
+
+[node name="HitRockDelay" type="Timer" parent="YSort/Player"]
+one_shot = true
+
+[node name="HitRockSound" type="AudioStreamPlayer" parent="YSort/Player"]
+stream = ExtResource( 17 )
+
+[node name="OutOfLivesSound" type="AudioStreamPlayer" parent="YSort/Player"]
+stream = ExtResource( 19 )
 
 [node name="UserInterface" type="Control" parent="YSort/Player"]
 margin_left = -550.0
@@ -215,6 +339,12 @@ one_shot = true
 [connection signal="timeout" from="RoadModeToggler/CarSpawner" to="." method="_on_CarSpawner_timeout"]
 [connection signal="timeout" from="RoadModeToggler/RoadTileSpawner" to="." method="_on_RoadTileSpawner_timeout"]
 [connection signal="timeout" from="RoadModeToggler/StopRoadMode" to="." method="_on_StopRoadMode_timeout"]
+[connection signal="body_entered" from="YSort/Player/Player" to="YSort/Player/Player" method="_on_Player_body_entered"]
+[connection signal="rock_hit" from="YSort/Player/Player" to="YSort/Player" method="_on_Player_rock_hit"]
+[connection signal="timeout" from="YSort/Player/Player/SawCooldown" to="YSort/Player/Player" method="_on_SawCooldown_timeout"]
+[connection signal="timeout" from="YSort/Player/Player/SawActive" to="YSort/Player/Player" method="_on_SawActive_timeout"]
+[connection signal="body_entered" from="YSort/Player/Player/Saw" to="YSort/Player/Player" method="_on_Saw_body_entered"]
+[connection signal="timeout" from="YSort/Player/HitRockDelay" to="YSort/Player" method="_on_HitRockDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/StartDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_StartDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/WinDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_WinDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/LoseDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_LoseDelay_timeout"]
