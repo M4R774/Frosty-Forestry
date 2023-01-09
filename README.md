@@ -1,6 +1,6 @@
-# Wood Work
+# Frosty Forestry
 
-A small game made for Ludum Dare 52 (theme: Harvest). 
+A small game made for Ludum Dare 52 where the theme was "Harvest". 
 
 ## Pitch
 
@@ -17,6 +17,6 @@ A small game made for Ludum Dare 52 (theme: Harvest).
 
 ## Links
 
-- [Wood Work at Ludum Dare 52](https://ldjam.com/events/ludum-dare/52/$313689)
-- [Wood Work at itch.io](https://martta.itch.io/wood-work)
+- [Frosty Forestry at Ludum Dare 52](https://ldjam.com/events/ludum-dare/52/$313689)
+- [Frosty Forestry at itch.io](https://martta.itch.io/frosty-forestry)
 - Created with [Godot](https://godotengine.org/) v3.5.1
