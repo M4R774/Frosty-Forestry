@@ -3,7 +3,7 @@ extends Node2D
 export var speed = 200
 var can_scroll = true
 var lives = 4
-onready var life_sprites = [$UserInterface/Lives/Life0, $UserInterface/Lives/Life1, $UserInterface/Lives/Life2]
+onready var life_sprites = [$UserInterface/Lives/Life2, $UserInterface/Lives/Life1, $UserInterface/Lives/Life0]
 var blink_counter = 1
 
 

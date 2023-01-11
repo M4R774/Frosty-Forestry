@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/harvester75.mp3" type="AudioStream" id=2]
@@ -27,6 +27,15 @@
 [ext_resource path="res://Sprites/saha3.png" type="Texture" id=25]
 [ext_resource path="res://Sprites/saha1.png" type="Texture" id=26]
 [ext_resource path="res://Sounds/Doom_Shotgun_Firing_Sound_Effect.mp3" type="AudioStream" id=27]
+[ext_resource path="res://Scripts/TouchControls.gd" type="Script" id=28]
+[ext_resource path="res://touch_controls_theme.tres" type="Theme" id=29]
+[ext_resource path="res://Sprites/saw_icon2.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/saw_icon1.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/saw_icon4.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/saw_icon5.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/saw_icon6.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/saw_icon7.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/saw_icon3.png" type="Texture" id=36]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 78.125, 14 )
@@ -49,6 +58,19 @@ colors = PoolColorArray( 0.203125, 0.203125, 0.203125, 1, 0.199219, 0.199219, 0.
 [sub_resource type="Curve" id=4]
 min_value = -1.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.965347, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 36 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
+"loop": true,
+"name": "cooldown",
+"speed": 2.5
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -174,6 +196,7 @@ limit_bottom = 0
 position = Vector2( 15, 305 )
 script = ExtResource( 15 )
 saw_cooldown = 2
+is_using_touch_controls = true
 
 [node name="ChainsawReadySound" type="AudioStreamPlayer" parent="YSort/Player/Player"]
 stream = ExtResource( 27 )
@@ -244,6 +267,39 @@ scale_amount_random = 0.5
 color_ramp = SubResource( 3 )
 hue_variation_curve = SubResource( 4 )
 
+[node name="TouchControls" type="Node2D" parent="YSort/Player/Player"]
+position = Vector2( -15, -305 )
+script = ExtResource( 28 )
+
+[node name="GoRight" type="Button" parent="YSort/Player/Player/TouchControls"]
+margin_left = -70.0
+margin_top = 150.0
+margin_right = 930.0
+margin_bottom = 330.0
+theme = ExtResource( 29 )
+
+[node name="GoLeft" type="Button" parent="YSort/Player/Player/TouchControls"]
+margin_left = -1070.0
+margin_top = 150.0
+margin_right = -70.0
+margin_bottom = 330.0
+grow_vertical = 0
+theme = ExtResource( 29 )
+
+[node name="GoUp" type="Button" parent="YSort/Player/Player/TouchControls"]
+margin_left = -1070.0
+margin_top = -450.0
+margin_right = 930.0
+margin_bottom = 150.0
+theme = ExtResource( 29 )
+
+[node name="GoDown" type="Button" parent="YSort/Player/Player/TouchControls"]
+margin_left = -1070.0
+margin_top = 330.0
+margin_right = 930.0
+margin_bottom = 930.0
+theme = ExtResource( 29 )
+
 [node name="HitRockDelay" type="Timer" parent="YSort/Player"]
 one_shot = true
 
@@ -273,9 +329,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = 525.0
+margin_left = 733.0
 margin_top = 478.0
-margin_right = 565.0
+margin_right = 773.0
 margin_bottom = 518.0
 
 [node name="Life0" type="Sprite" parent="YSort/Player/UserInterface/Lives"]
@@ -305,18 +361,18 @@ text = "CHAINSAW READY"
 script = ExtResource( 7 )
 
 [node name="ScoreLabel" type="Label" parent="YSort/Player/UserInterface"]
-margin_left = 76.0
-margin_top = 535.0
-margin_right = 312.0
-margin_bottom = 567.0
+margin_left = 108.0
+margin_top = 510.0
+margin_right = 344.0
+margin_bottom = 542.0
 text = "Forest raked: 0"
 script = ExtResource( 7 )
 
 [node name="GoalLabel" type="RichTextLabel" parent="YSort/Player/UserInterface"]
-margin_left = 747.0
-margin_top = 532.0
-margin_right = 1019.0
-margin_bottom = 564.0
+margin_left = 108.0
+margin_top = 550.0
+margin_right = 380.0
+margin_bottom = 582.0
 text = "Boss wants:  00 ?!"
 scroll_active = false
 script = ExtResource( 11 )
@@ -332,6 +388,23 @@ one_shot = true
 
 [node name="LoseDelay" type="Timer" parent="YSort/Player/UserInterface/GoalLabel"]
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="YSort/Player/UserInterface"]
+position = Vector2( 956, 545 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 6 )
+
+[node name="ActivateChainSaw" type="Button" parent="YSort/Player/UserInterface/AnimatedSprite"]
+margin_left = -23.0
+margin_top = -24.0
+margin_right = 24.0
+margin_bottom = 24.0
+theme = ExtResource( 29 )
+
+[node name="Life2" type="Sprite" parent="YSort/Player/UserInterface/AnimatedSprite"]
+position = Vector2( 1.33337, -0.333389 )
+rotation = -0.785398
+texture = ExtResource( 12 )
+
 [connection signal="timeout" from="TreeSpawner" to="." method="_on_TreeSpawner_timeout"]
 [connection signal="timeout" from="RockSpawner" to="." method="_on_RockSpawner_timeout"]
 [connection signal="timeout" from="RoadModeToggler" to="." method="_on_RoadModeToggler_timeout"]
@@ -344,7 +417,16 @@ one_shot = true
 [connection signal="timeout" from="YSort/Player/Player/SawCooldown" to="YSort/Player/Player" method="_on_SawCooldown_timeout"]
 [connection signal="timeout" from="YSort/Player/Player/SawActive" to="YSort/Player/Player" method="_on_SawActive_timeout"]
 [connection signal="body_entered" from="YSort/Player/Player/Saw" to="YSort/Player/Player" method="_on_Saw_body_entered"]
+[connection signal="button_down" from="YSort/Player/Player/TouchControls/GoRight" to="YSort/Player/Player/TouchControls" method="_on_GoRight_button_down"]
+[connection signal="button_up" from="YSort/Player/Player/TouchControls/GoRight" to="YSort/Player/Player/TouchControls" method="_on_GoRight_button_up"]
+[connection signal="button_down" from="YSort/Player/Player/TouchControls/GoLeft" to="YSort/Player/Player/TouchControls" method="_on_GoLeft_button_down"]
+[connection signal="button_up" from="YSort/Player/Player/TouchControls/GoLeft" to="YSort/Player/Player/TouchControls" method="_on_GoLeft_button_up"]
+[connection signal="button_down" from="YSort/Player/Player/TouchControls/GoUp" to="YSort/Player/Player/TouchControls" method="_on_GoUp_button_down"]
+[connection signal="button_up" from="YSort/Player/Player/TouchControls/GoUp" to="YSort/Player/Player/TouchControls" method="_on_GoUp_button_up"]
+[connection signal="button_down" from="YSort/Player/Player/TouchControls/GoDown" to="YSort/Player/Player/TouchControls" method="_on_GoDown_button_down"]
+[connection signal="button_up" from="YSort/Player/Player/TouchControls/GoDown" to="YSort/Player/Player/TouchControls" method="_on_GoDown_button_up"]
 [connection signal="timeout" from="YSort/Player/HitRockDelay" to="YSort/Player" method="_on_HitRockDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/StartDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_StartDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/WinDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_WinDelay_timeout"]
 [connection signal="timeout" from="YSort/Player/UserInterface/GoalLabel/LoseDelay" to="YSort/Player/UserInterface/GoalLabel" method="_on_LoseDelay_timeout"]
+[connection signal="button_down" from="YSort/Player/UserInterface/AnimatedSprite/ActivateChainSaw" to="YSort/Player/Player/TouchControls" method="_on_ActivateChainSaw_button_down"]
